@@ -28,6 +28,15 @@ function App() {
     saveTodos(newTodos);
   };
 
+  console.log('log 1');
+
+  React.useEffect(()=>{
+    console.log('log 2');},
+    []
+  );
+
+  console.log('log 3');
+
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
