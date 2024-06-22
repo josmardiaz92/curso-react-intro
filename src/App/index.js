@@ -2,8 +2,23 @@ import React from 'react';
 import { AppUI } from './AppUI';
 import { useLocalStorage } from './useLocalStorage';
 
+/* localStorage.removeItem('TODOS_V1');
+const defaultTodos=[
+  {text:'Cortar cebolla', completed:false},
+  {text:'Tomar curso de React', completed:false},
+  {text:'Hacer ejercicio', completed:false},
+  {text:'Lavar los platos', completed:false},
+];
+localStorage.setItem('TODOS_V1', JSON.stringify(defaultTodos)); */
+
+
 function App() {
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error
+  } = useLocalStorage('TODOS_V1', []);
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(
@@ -28,15 +43,6 @@ function App() {
     saveTodos(newTodos);
   };
 
-  console.log('log 1');
-
-  React.useEffect(()=>{
-    console.log('log 2');},
-    []
-  );
-
-  console.log('log 3');
-
   const deleteTodo = (text) => {
     const newTodos = [...todos];
     const todoIndex = newTodos.findIndex(
@@ -48,6 +54,8 @@ function App() {
   
   return (
     <AppUI
+      loading={loading}
+      error={error}
       completedTodos={completedTodos}
       totalTodos={totalTodos}
       searchValue={searchValue}
