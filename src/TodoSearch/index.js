@@ -1,6 +1,7 @@
+import React from 'react';
 import './TodoSearch.css'
 
-function TodoSearch({searchValue,setsearchValue}){
+function TodoSearch({searchValue,setSearchValue}){
     return(
         <input 
             placeholder="Cortar cebolla"
@@ -8,11 +9,11 @@ function TodoSearch({searchValue,setsearchValue}){
             value={searchValue}
             onChange={
                 (event)=>{
-                    setsearchValue(event.target.value);
+                    setSearchValue(event.target.value);
                 }
             }
         />
     );
 }
 
-export { TodoSearch }; 
+export { TodoSearch };
